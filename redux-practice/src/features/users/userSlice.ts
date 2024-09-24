@@ -3,18 +3,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type UserType = {
+  id: number;
   firsName: string;
   lastName: string;
   age: number;
 };
 
 type StateType = {
-  users: UserType[];
+  usersState: UserType[];
 };
 
 const initialState: StateType = {
-  users: [
+  usersState: [
     {
+      id: 1,
       firsName: "Joao",
       lastName: "Sinhasique",
       age: 1,
@@ -27,7 +29,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<UserType>) => {
-      state.users.push(action.payload);
+      state.usersState.push(action.payload);
     },
   },
 });
