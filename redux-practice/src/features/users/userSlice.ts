@@ -2,7 +2,7 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type UserType = {
+export type UserType = {
   id: number;
   firsName: string;
   lastName: string;
@@ -28,8 +28,11 @@ const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<UserType>) => {
-      state.usersState.push(action.payload);
+    add: (state, action: PayloadAction<UserType["id"]>) => {
+      const user = state.usersState.find((u) => u.id === action.payload);
+      if (user) {
+        user.age += 1; // Increment the user's age by 1
+      }
     },
   },
 });
